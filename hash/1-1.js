@@ -13,3 +13,11 @@ const getAnswer = (arr) => {
     return deduplicateArr.length
   }
 }
+
+/**
+ * 문제 https://school.programmers.co.kr/learn/courses/30/lessons/1845
+ *
+ * 풀이시간 : 30분
+ *
+ * 결과 : 성공
+ */
