@@ -21,3 +21,17 @@ const getAnswer = (arr) => {
  *
  * 결과 : 성공
  */
+
+/** 다시 푼 정답  */
+function solution(arr) {
+  const totalCnt = arr.length
+  const getCnt = totalCnt / 2
+
+  const deduplicatedArr = [...new Set(arr)]
+
+  if (deduplicatedArr.length > getCnt) {
+    return getCnt
+  } else {
+    return deduplicatedArr.length
+  }
+}

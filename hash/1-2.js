@@ -50,3 +50,24 @@ function solution(participant, completion) {
 
   return answer
 }
+
+//** 다시푼 코드 */
+/** for of for in 차이를 햇갈렸음,,, ,그거외엔 정답 */
+
+function solution(participant, completion) {
+  const map = new Map()
+
+  participant.forEach((name) => {
+    map.set(name, (map.get(name) || 0) + 1)
+  })
+
+  completion.forEach((name) => {
+    map.set(name, (map.get(name) || 0) - 1)
+  })
+
+  for (let [name, count] of map) {
+    if (count > 0) {
+      return name
+    }
+  }
+}

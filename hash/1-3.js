@@ -41,3 +41,16 @@ function solution(phone_book) {
 
   return answer
 }
+
+/**다시 푼 코드(정답) */
+
+function solution(phone_book) {
+  phone_book.sort()
+
+  for (let i = 0; i < phone_book.length - 1; i++)
+    if (phone_book[i + 1].startsWith(phone_book[i])) {
+      return false
+    }
+
+  return true
+}
