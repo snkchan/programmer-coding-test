@@ -69,3 +69,40 @@ function solution(genres, plays) {
 
   return result
 }
+
+/**다시 푼 코드(실패) */
+/** 2차원배열과 sort의 사용법 미숙했음,,, 아이디어는 파악 */
+
+function solution(genres, plays) {
+  const genreMap = new Map()
+  const songMap = new Map()
+
+  genres.forEach((genre, idx) => {
+    genreMap.set(genre, (genreMap.get(genre) || 0) + plays[idx])
+
+    if (!songMap.has(genre)) {
+      songMap.set(genre, [])
+    }
+    songMap.get(genre).push([idx, plays[idx]])
+  })
+
+  const sotredGnereArr = Array.from(genreMap.entries()).sort(
+    (a, b) => b[1] - a[1]
+  )
+
+  const result = []
+
+  sotredGnereArr.forEach(([genre]) => {
+    const sortedSongArr = songMap.get(genre).sort((a, b) => b[1] - a[1])
+    result.push(sortedSongArr[0][0])
+    if (sortedSongArr.length > 1) {
+      result.push(sortedSongArr[1][0])
+    }
+  })
+  return result
+}
+
+solution(
+  ["classic", "pop", "classic", "classic", "pop"],
+  [500, 600, 150, 800, 2500]
+)
