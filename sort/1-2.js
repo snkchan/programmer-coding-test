@@ -18,3 +18,19 @@ function solution(numbers) {
  *
  *
  */
+
+/** 다시푼 코드(실패)
+ *  sort 의 문자열 비교를 위해서는 localeCompare()를 사용해야하고 - 연산은 숫자에만해당하기에 localeCompare로 문자열 비교를 해줘야함
+ *
+ *
+ */
+function solution(numbers) {
+  if (numbers.every((num) => num === 0)) return "0"
+
+  const sortedArr = numbers
+    .map(String)
+    .sort((a, b) => (b + a).localeCompare(a + b))
+  const result = sortedArr.join("")
+
+  return result
+}
