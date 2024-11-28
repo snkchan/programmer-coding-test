@@ -24,3 +24,21 @@ function solution(citations) {
  *
  *
  */
+
+/** 재시도 (실패)
+ *  큰수로 정렬했기때문에 index를 사용해서 비교할 수 있었는데 거기까지 생각하지 못했음
+ *
+ */
+function solution(citations) {
+  let HCount = 0
+  const length = citations.length
+  const sortedArr = citations.sort((a, b) => b - a)
+  for (let i = 0; i < length; i++) {
+    if (sortedArr[i] >= i + 1) {
+      HCount++
+    } else {
+      break
+    }
+  }
+  return HCount
+}
