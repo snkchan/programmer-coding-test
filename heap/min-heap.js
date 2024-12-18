@@ -1,59 +1,63 @@
-/** 최소힙 구현 코드 */
-
 const createMinHeap = () => {
   const heap = []
+
+  // 부모 인덱스 계산
   const getParentIndex = (index) => Math.floor((index - 1) / 2)
-  const getLeftChildIndx = (index) => index * 2 + 1
-  const getRigthChildIndex = (index) => index * 2 + 2
+  // 왼쪽 자식 인덱스 계산
+  const getLeftChildIndex = (index) => index * 2 + 1
+  // 오른쪽 자식 인덱스 계산
+  const getRightChildIndex = (index) => index * 2 + 2
+
+  // 값을 삽입하고 최소 힙을 유지
   const insert = (value) => {
     heap.push(value)
     heapifyUp()
   }
-
+  const swap = (el1, el2) => ([heap[el1], heap[el2]] = [heap[el2], heap[el1]])
+  // 최소값을 추출하고 최소 힙을 유지
   const extractMin = () => {
     if (heap.length === 0) return null
     if (heap.length === 1) return heap.pop()
 
     const min = heap[0]
-    heap[0] = heap.pop()
+    heap[0] = heap.pop() // 마지막 값을 루트로 이동
     heapifyDown()
     return min
   }
 
+  // 삽입 시 힙 속성 유지
   const heapifyUp = () => {
     let index = heap.length - 1
     while (index > 0) {
       const parentIndex = getParentIndex(index)
       if (heap[index] >= heap[parentIndex]) break
-      ;[heap[index], heap[parentIndex]] = [heap[parentIndex], heap[index]]
+      swap(index, parentIndex)
       index = parentIndex
     }
   }
 
+  // 추출 시 힙 속성 유지
   const heapifyDown = () => {
     let index = 0
     const length = heap.length
-    while (getLeftChildIndx(index) < length) {
-      const leftChildIndex = getLeftChildIndx(index)
-      const rigthChildIndex = getRigthChildIndex(index)
-      let smallerChildindex = leftChildIndex
+
+    while (getLeftChildIndex(index) < length) {
+      const leftChildIndex = getLeftChildIndex(index)
+      const rightChildIndex = getRightChildIndex(index)
+      let smallerChildIndex = leftChildIndex
 
       if (
-        rigthChildIndex < length &&
-        heap[rigthChildIndex] < heap[leftChildIndex]
+        rightChildIndex < length &&
+        heap[rightChildIndex] < heap[leftChildIndex]
       ) {
-        smallerChildindex = rigthChildIndex
+        smallerChildIndex = rightChildIndex
       }
-      if (heap[index] <= heap[smallerChildindex]) break
-      ;[heap[index], heap[smallerChildindex]] = [
-        heap[smallerChildindex],
-        heap[index],
-      ]
-      index = smallerChildindex
+
+      if (heap[index] <= heap[smallerChildIndex]) break
+      swap(index, smallerChildIndex)
+      index = smallerChildIndex
     }
   }
 
-  const getHeap = () => [...heap]
-
-  return { insert, extractMin, getHeap }
+  return { insert, extractMin, heap }
 }

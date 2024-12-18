@@ -13,7 +13,7 @@ const createMinHeap = () => {
     heap.push(value)
     heapifyUp()
   }
-
+  const swap = (el1, el2) => ([heap[el1], heap[el2]] = [heap[el2], heap[el1]])
   // 최소값을 추출하고 최소 힙을 유지
   const extractMin = () => {
     if (heap.length === 0) return null
@@ -31,7 +31,7 @@ const createMinHeap = () => {
     while (index > 0) {
       const parentIndex = getParentIndex(index)
       if (heap[index] >= heap[parentIndex]) break
-      ;[heap[index], heap[parentIndex]] = [heap[parentIndex], heap[index]]
+      swap(index, parentIndex)
       index = parentIndex
     }
   }
@@ -54,10 +54,7 @@ const createMinHeap = () => {
       }
 
       if (heap[index] <= heap[smallerChildIndex]) break
-      ;[heap[index], heap[smallerChildIndex]] = [
-        heap[smallerChildIndex],
-        heap[index],
-      ]
+      swap(index, smallerChildIndex)
       index = smallerChildIndex
     }
   }
