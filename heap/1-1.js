@@ -82,3 +82,15 @@ function solution(scoville, K) {
   }
   return heap.heap[0] >= K ? count : -1
 }
+
+/**
+ * 문제 https://school.programmers.co.kr/learn/courses/30/lessons/42626
+ *
+ * 풀이시간 : 60분
+ *
+ * 결과 : 실패
+ *
+ * 리뷰 :
+ *  - heap의 개념을 몰랐음 (최대힙 최소힙)
+ *  - 언제 사용해야하는지? => 최소 or 최대 값을 시간복잡도 낮게 추출해야할때 & 순서가 존재한다
+ */
