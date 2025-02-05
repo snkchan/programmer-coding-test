@@ -56,3 +56,36 @@ function solution(numbers) {
  *  - parsInt의 두번째인자로 10을 넣으면 10진수가된다를 몰랐다
  *  - 소수판별의 로직을 이해못했음
  */
+
+function solution(numbers) {
+  const numArr = numbers.split("")
+  const set = new Set()
+
+  const generateArr = (arr, fixed) => {
+    if (arr.length > 0) {
+      for (let i = 0; i < arr.length; i++) {
+        const newNumber = fixed + arr[i]
+        set.add(parseInt(newNumber, 10))
+        const restArr = arr.filter((_, idx) => idx !== i)
+
+        generateArr(restArr, newNumber)
+      }
+    }
+  }
+
+  generateArr(numArr, "")
+
+  const isPrime = (num) => {
+    if (num < 2) return false
+    if (num === 2) return true
+    if (num % 2 === 0) return false
+    if (num > 2) {
+      for (let i = 3; i <= Math.sqrt(num); i = i + 2) {
+        if (num % i === 0) return false
+      }
+    }
+    return true
+  }
+
+  return [...set].filter((num) => isPrime(num)).length
+}
