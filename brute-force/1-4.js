@@ -36,13 +36,20 @@ function solution(brown, yellow) {
 
  */
 
-/**
- *   12 3 [5,3]
- *   10 2 [4,3]
- *   8  1 [3,3]
- *   12 4 [4,4]
- *
- *   24 24 [8,6]
- *
- *
- */
+function solution(brown, yellow) {
+  const totalSize = brown + yellow
+
+  for (
+    let rowSize = Math.floor(Math.sqrt(totalSize));
+    rowSize >= 1;
+    rowSize--
+  ) {
+    if (totalSize % rowSize === 0) {
+      let colSize = totalSize / rowSize
+
+      if (brown === rowSize * 2 + colSize * 2 - 4) {
+        return [colSize, rowSize]
+      }
+    }
+  }
+}
