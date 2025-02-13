@@ -34,6 +34,32 @@
  *
  * 정답 코드인데 아직 완전히 이해하지못함,,,, 내일다시
  */
+// function solution(k, dungeons) {
+//   let maxCount = 0
+
+//   function dfs(curK, count, visited) {
+//     maxCount = Math.max(maxCount, count)
+
+//     for (let i = 0; i < dungeons.length; i++) {
+//       if (visited[i]) continue // 이미 방문한 던전이면 스킵
+//       if (curK < dungeons[i][0]) continue // 피로도가 부족하면 스킵
+
+//       visited[i] = true
+//       dfs(curK - dungeons[i][1], count + 1, visited) // 던전 탐색
+//       visited[i] = false // 백트래킹 (되돌리기)
+//     }
+//   }
+
+//   dfs(k, 0, Array(dungeons.length).fill(false))
+//   return maxCount
+// }
+
+/**
+ *
+ * 재귀함수에대한 아이디어를 사용해볼 수있는 문제였다.
+ * 다시 한번더 도전해봐야할듯
+ */
+
 function solution(k, dungeons) {
   let maxCount = 0
 
